@@ -1,15 +1,17 @@
-package JDBC;
+package JDBC.PreparedStatements;
 import java.sql.*;
-public class Jdbcinsert {
+public class PSUpdate {
     private static final String url="jdbc:mysql://localhost:3306/sms2";
     private static final String userName="root";
     private static final String password="Divya@2006";
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(url, userName, password);
-        Statement st = con.createStatement();
-        String query = String.format("insert into students(id,name,email,marks)values(%d,'%s','%s',%d)",3,"ds","ds@gmail.com",2006);
-        int res=st.executeUpdate(query);
+        String query = "update students set marks=? where id=?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1,70);
+        ps.setInt(2,4);
+        int res=ps.executeUpdate();
         if(res>0){
             System.out.println("success");
         }

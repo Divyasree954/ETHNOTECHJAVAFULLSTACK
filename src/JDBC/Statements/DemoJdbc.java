@@ -1,4 +1,4 @@
-package JDBC;
+package JDBC.Statements;
 import java.sql.*;
 public class DemoJdbc {
     private static final String url="jdbc:mysql://localhost:3306/sms2";
